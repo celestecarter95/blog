@@ -37,8 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'blogapp',
 	'sorl.thumbnail',
+	'blogapp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,5 +103,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 MEDIA_PATH = os.path.join(BASE_DIR, 'media')

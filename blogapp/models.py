@@ -6,8 +6,10 @@ class Post(models.Model):
 	title = models.CharField(max_length=200)
 	picture = models.ImageField(upload_to="pics/%Y/%m/%d", blank=True, null=True)
 	pub_date = models.DateTimeField(auto_now_add =True)
+	blog_poster = models.CharField(max_length=200, default='Celeste')
 	keywords = models.CharField(max_length=200, blank=True, null=True)
-	comment = models.ManyToManyField('Comment')
+	active = models.BooleanField(default=True)
+	comment = models.ManyToManyField('Comment', blank=True)
 	category = models.ManyToManyField('Category')
 
 	def __unicode__(self):
