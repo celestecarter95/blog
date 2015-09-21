@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>{% block 'title' %}Celeste's Blog{% endblock %}</title>
+		<title>{% block 'title' %}Celeste's Blog{% endblock %}</title>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-	<!-- Google Custom Fonts -->
-	<link href='https://fonts.googleapis.com/css?family=Pacifico|Satisfy|Marck+Script|Damion|La+Belle+Aurore|Ruthie' rel='stylesheet' type='text/css'>
+		<!-- Google Custom Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=La+Belle+Aurore|Comfortaa:400,700' rel='stylesheet' type='text/css'>
+
+		<!-- Custom css -->
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'blogapp/blog.css' %}" />
     </head>
 
     <body>
+		<h1 class="web-title cursive">Share Your Thoughts</h1>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'blogapp:index' %}">Home</a></li>
+					<li><a href="{% url 'blogapp:category'  %}">Search by Category</a></li> 
+					<li><a href="{% url 'blogapp:blogging' %}">Write a Blog</a></li> 
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="search-input form-control" placeholder="Blog Title/Keyword">
+						</div>
+						<button type="submit" class="btn search-btn">Search</button>
+					</form>
+				</ul>
+			</div>
+		</nav>
 
-{% block 'content' %}
-{% endblock %}
+		<div class="container">
+			{% block 'content' %}
 
-        <footer>
-        </footer>
+			{% endblock %}
+		</div>
+
+		<footer>
+			<div class="container">
+				<p>Copyright &copy; Celeste's Blog Site</p>
+			</div>
+		<footer>
     </body>
 </html>

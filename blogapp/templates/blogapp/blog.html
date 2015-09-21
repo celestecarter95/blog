@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Writing a Blog{% endblock %}
+
+{% block 'content' %}
+
+<form action="{% url 'blogapp:blog' %}" method="POST">{% csrf_token %}
+<!--
+<form action="/blogging/" method="POST">{% csrf_token %}
+-->
+	{{ form }}
+<input type='submit' value='Submit' /> 
+</form>
+
+
+{% endblock %}

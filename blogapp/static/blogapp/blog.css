@@ -14,5 +14,189 @@
  * peach:
  * color: #F19A75;
  * color: rgba(241,154,117,1.0);
-/*
+*/
 
+body {
+	background: url("img/paper.jpg");
+	font-size: 20px;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	font-family: 'Comfortaa', serif;
+}
+
+.container {
+	flex: 1;
+}
+
+.navbar-inverse {
+	background-color: rgba(0,101,118,1.0);
+	border: none;
+	border-radius: 0;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: rgba(241,239,199,1.0);
+}
+
+.cursive {
+	font-family: 'La Belle Aurore', cursive;
+}
+
+.write-comment,
+.web-title {
+	color: rgba(0,64,89,1.0);
+	font-size: 60px;
+	text-align: center;
+	z-index: 1;
+	margin: 20px 0 -15px;
+}
+
+.form-control {
+	background-color: rgba(241,239,199,1.0);
+	border: rgba(241,239,199,1.0);
+}
+
+.form-control {
+	color: rgba(0,64,89,1.0);
+}
+
+.btn {
+	color: rgba(241,239,199,1.0);
+	background-color: rgba(241,154,117,1.0);
+	border: rgba(241,154,117,1.0);
+	padding: 10px 15px;
+	font-size: 18px;
+}
+
+a:focus, a:hover {
+	text-decoration: none;
+}
+
+.search-btn {
+	position: absolute;
+	bottom: 8px;
+	right: 15px;
+	padding: 7px;
+	font-size: 14px;
+}
+
+.search-input {
+	padding-right: 70px;
+}
+
+.preview {
+	background-color: rgba(0,139,140,1.0);
+	color: rgba(241,239,199,1.0);
+	padding: 15px 30px 50px;
+	margin-bottom: 20px;
+}
+
+.preview .title {
+	float: left;
+}
+
+.preview .poster {
+	clear: both;
+}
+
+.preview span {
+	font-size: 30px;
+}
+
+.preview .published {
+	float: right;
+}
+
+.preview .body {
+}
+
+.preview .category {
+	float:left;
+	background-color: rgba(241,154,117,1.0);
+	border-radius: 3px;
+	padding: 8px 10px;
+	height: 40px;
+	overflow: scroll;
+}
+
+.preview .keywords {
+	float:left;
+	margin-left: 15px;
+	padding: 8px 10px;
+}
+
+.post img {
+	float: left;
+	margin-right: 10px;
+	border: 20px solid transparent;
+    -webkit-border-image: url('img/border.png') 50 stretch; /* Safari 3.1-5 */
+    -o-border-image: url('img/border.png') 50 stretch; /* Opera 11-12.1 */
+    border-image: url('img/border.png') 60 stretch;
+}
+
+.post .published {
+	font-size: 15px;
+}
+
+.post span {
+	font-size: 30px;
+}
+
+.comment {
+	background-color: rgba(0,101,118,1.0);
+	color: rgba(241,239,199,1.0); 
+	padding: 10px 30px;
+	margin-bottom: 20px;
+}
+
+.comment .name {
+	float: left;
+}
+
+.comment .published {
+	float: right;
+}
+
+.comment .text {
+	clear: both;
+}
+
+.form-horizontal {
+	background-color: rgba(0,139,140,1.0);
+	padding: 40px 60px 80px;
+	margin: 20px 0 50px;
+}
+
+.btn-comment {
+	background-color: rgba(0,64,89,1.0);
+	float: right;
+	margin-top: 10px;
+}
+
+textarea.form-control {
+	height: 100px;
+}
+
+.write-comment {
+	margin-top: 50px;
+}
+
+.blogging textarea {
+	height: 250px;
+}
+
+.blogging label {
+	text-align: right;
+	float: right;
+}
+
+.blogging .form-control {
+	margin-bottom: 15px;
+}
+
+footer {
+	background-color: rgba(0,101,118,1.0);
+	color: rgba(241,239,199,1.0);
+	padding-top: 10px;
+}

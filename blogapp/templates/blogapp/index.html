@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
-{% load thumbnail %}
 
 {% block 'title' %} Most Recent Blog Post {% endblock 'title' %}
 {% block 'content' %}
-<h1>Most Recent Blog Posts</h1>
 
 {% for post in post_list %}
-	<h2>{{ post.title }}</h2>
-	{% if post.picture %}
-		{% thumbnail post.picture "300x300" crop="center" as im %}
-		<img src="{{ im.url }}" alt="{{post.title}}">
-		{% endthumbnail %}
-	{% endif %}
-	<a href="{% url 'blogapp:detail' post.id %}#comment-section">Leave a comment...</a>
-	<h4 class="published">Published {{ post.pub_date|date:"M d, Y" }}</h4>
-	<div class="post-body">
-	{{ post.body }}
-	</div>
+	<a href="{% url 'blogapp:detail' post.id %}">
+		<div class="preview">
+			<h3 class="title">{{ post.title }}</h3>
+			<p class="published">Published {{ post.pub_date|date:"M d, Y" }}</p>
+			<h4 class="poster">by <span class="cursive">{{ post.blog_poster}}</span></h4>
+			<p class="body">{{ post.body|slice:":100" }}...</p>
+			<div class="category">
+				{% for category in post.category.all %}
+					<p>{{ category }}</p>
+				{% endfor %}
+			</div>
+			<p class="keywords">{{ post.keywords.split|join:", " }}</p>
+		</div>
+	</a>
 {% empty %}
 	<p>No posts to show.</p>
 {% endfor %}
-
 
 {% endblock 'content' %}

@@ -1,0 +1,24 @@
+{% for comment in post.comment_set.all %}
+
+	<div class="comment">
+		<h3 class="name">{{ comment.person }}</h3>
+		<h4 class="published">Commented on: {{ comment.pub_date|date:"M d, Y h:m:s" }}</h4>
+		<p class="text">{{ comment.comment_text }}</p>
+	</div>
+
+{% empty %}
+	<p>Be the first of your friends to comment on this post.</p>
+
+{% endfor %}
+
+<h2 class="cursive write-comment">Write a Comment!</h2>
+<form action="{% url 'blogapp:comment' post.id %}" method="POST" class="form-horizontal" role="form">{% csrf_token %}
+	<div class="form-group">
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="person" id="person" placeholder="Name">
+		</div>
+	</div>
+	<textarea row="10" class="form-control" name="comment" id="comment" placeholder="Comment..."></textarea>
+	<button type="submit" class="btn btn-comment">Submit</button>
+	</div>
+</form>

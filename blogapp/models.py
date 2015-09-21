@@ -1,15 +1,16 @@
+from django.utils import timezone
 from django.db import models
 
 # Create your models here.
 class Post(models.Model):
 	title = models.CharField(max_length=200)
+	blog_poster = models.CharField(max_length=200)
 	body = models.TextField()
-	picture = models.ImageField(upload_to="pics/%Y/%m/%d", blank=True, null=True)
-	pub_date = models.DateTimeField()
-	blog_poster = models.CharField(max_length=200, default='Celeste')
+	pub_date = models.DateTimeField(default=timezone.now)
 	keywords = models.CharField(max_length=200, blank=True, null=True)
 	active = models.BooleanField(default=True)
 	category = models.ManyToManyField('Category', blank=True)
+	picture = models.ImageField(upload_to="pics/%Y/%m/%d", blank=True, null=True)
 
 	def __unicode__(self):
 		return self.title

@@ -1,1 +1,21 @@
-{{ post.title }}
+{% extends 'base.html' %}
+{% load thumbnail %} 
+
+{% block 'title' %}{{ post.title }}{% endblock 'title' %}
+
+{% block 'content' %}
+	<div class="post">
+	{% if post.picture %}
+		{% thumbnail post.picture "400x250" crop="center" as im %}
+		<img src="{{ im.url }}" alt="{{post.title}}">
+		{% endthumbnail %}
+	{% endif %}
+	<h1 class="title">{{ post.title }}</h1>
+	<p class="published">Published {{ post.pub_date|date:"M d, Y" }}</p>
+	<h4 class="poster">by <span class="cursive">{{ post.blog_poster}}</span></h4>
+	<p class="body">{{ post.body }}...</p>
+	</div>
+
+	{% include 'blogapp/comments.html' %}
+
+{% endblock 'content' %}
