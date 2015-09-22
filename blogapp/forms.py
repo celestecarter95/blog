@@ -24,9 +24,9 @@ class BlogPostForm(forms.ModelForm):
 			'category': forms.SelectMultiple(attrs={'class': 'form-control'}),
 		}
 
-class BlogForm(forms.Form):
-	title = forms.CharField(max_length=200)
-	body = forms.CharField(widget=forms.Textarea)
-	pub_date = forms.DateTimeField()
-	blog_poster = forms.CharField(max_length=200)
-	keywords = forms.CharField(max_length=200)
+#class BlogForm(forms.Form):
+#	title = forms.CharField(max_length=200)
+#	body = forms.CharField(widget=forms.Textarea)
+#	pub_date = forms.DateTimeField()
+#	blog_poster = forms.CharField(max_length=200)
+#	keywords = forms.CharField(max_length=200)

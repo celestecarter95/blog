@@ -4,7 +4,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
-from .forms import BlogPostForm, BlogForm
+from .forms import BlogPostForm #, BlogForm
 from .models import Post, Comment, Category
 
 from django.http import HttpResponse
@@ -56,60 +56,61 @@ class PostImageView(generic.FormView):
 	form_class = BlogPostForm
 
 	def form_valid(self, form):
-		print "It's valid"
-		print(request.POST['title'])
-		print(request.POST['body'])
-		print(request.POST['pub_date'])
-		print(request.POST['blog_poster'])
-		print(request.POST['keywords'])
-		print(request.POST['category'])
 		
-		new_title = request.POST['title']
-		new_body = request.POST['body']
-		new_poster = request.POST['blog_poster']
-		new_date = request.POST['pub_date']
-		new_keywords = request.POST['keywords']
-		new_category = request.POST['category']
-		newPost = Post(title=new_title, body=new_body, blog_poster=new_poster, pub_date=new_date, keywords=new_keywords, picture=self.get_form_kwargs().get('files')['picture'])
+		#Grabbing all form fields and making an instance of Post
+		new_title = form.cleaned_data['title']
+		new_body = form.cleaned_data['body']
+		new_poster = form.cleaned_data['blog_poster']
+		new_date = form.cleaned_data['pub_date']
+		new_keywords = form.cleaned_data['keywords']
+		newPost = Post(title=new_title, body=new_body, blog_poster=new_poster, pub_date=new_date, keywords=new_keywords)
+		newPost.picture = self.get_form_kwargs().get('files')['picture']
 		newPost.save()
+
+		#Adding all categoryies to newPost
+		new_categories = form.cleaned_data['category']
+		for category in new_categories:
+			newPost.category.add(category)
 		self.id = newPost.id
 
 		return HttpResponseRedirect(self.get_success_url())
 
 	def get_success_url(self):
-		return reverse('index', kwargs={'pk': self.id})
+		return reverse('blogapp:detail', kwargs={'pk': self.id})
 
-def blogging(request):
-	if request.method == 'POST':
-		form = BlogPostForm(request.POST, request.FILES)
-		print "Finding if form is valid"
+#No model view form
+#def blogging(request):
+#	if request.method == 'POST':
+#		form = BlogPostForm(request.POST, request.FILES)
+#		print "Finding if form is valid"
+#
+#		if(form.is_valid()):
+#			print "It's valid"
+#			print(request.POST['title'])
+#			print(request.POST['body'])
+#			print(request.POST['pub_date'])
+#			print(request.POST['blog_poster'])
+#			print(request.POST['keywords'])
+#			print(request.POST['category'])
+#			
+#			new_title = request.POST['title']
+#			new_body = request.POST['body']
+#			new_poster = request.POST['blog_poster']
+#			new_date = request.POST['pub_date']
+#			new_keywords = request.POST['keywords']
+#			new_category = request.POST['category']
+#			newPost = Post(title=new_title, body=new_body, blog_poster=new_poster, pub_date=new_date, keywords=new_keywords, picture=self.get_form_kwargs().get('files')['picture'])
+#			newPost.save()
+#
+#			return HttpResponseRedirect(reverse('blogapp:index'))
+#	return render_to_response('blogapp/blogging.html', {'form': BlogPostForm()}, context_instance=RequestContext(request))
 
-		if(form.is_valid()):
-			print "It's valid"
-			print(request.POST['title'])
-			print(request.POST['body'])
-			print(request.POST['pub_date'])
-			print(request.POST['blog_poster'])
-			print(request.POST['keywords'])
-			print(request.POST['category'])
-			
-			new_title = request.POST['title']
-			new_body = request.POST['body']
-			new_poster = request.POST['blog_poster']
-			new_date = request.POST['pub_date']
-			new_keywords = request.POST['keywords']
-			new_category = request.POST['category']
-			newPost = Post(title=new_title, body=new_body, blog_poster=new_poster, pub_date=new_date, keywords=new_keywords, picture=self.get_form_kwargs().get('files')['picture'])
-			newPost.save()
-
-			return HttpResponseRedirect(reverse('blogapp:index'))
-	return render_to_response('blogapp/blogging.html', {'form': BlogPostForm()}, context_instance=RequestContext(request))
-
-def blog(request):
-	if request.method == 'POST':
-		form = BlogForm(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/index/')
-	else:
-		form = BlogForm()
-		return render(request, 'blogapp/blog.html', {'form': form})
+#form.form and not model form
+#def blog(request):
+#	if request.method == 'POST':
+#		form = BlogForm(request.POST)
+#		if form.is_valid():
+#			return HttpResponseRedirect('/index/')
+#	else:
+#		form = BlogForm()
+#		return render(request, 'blogapp/blog.html', {'form': form})

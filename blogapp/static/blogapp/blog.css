@@ -77,6 +77,11 @@ a:focus, a:hover {
 	text-decoration: none;
 }
 
+#first {
+	text-align: center;
+	margin: 60px 0;
+}
+
 .search-btn {
 	position: absolute;
 	bottom: 8px;
@@ -211,6 +216,10 @@ textarea.form-control {
 
 .category_list p {
 	display: inline;
+}
+
+input[type=file] {
+	padding-top: 2px;
 }
 
 footer {

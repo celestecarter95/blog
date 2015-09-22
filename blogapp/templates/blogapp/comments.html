@@ -7,18 +7,24 @@
 	</div>
 
 {% empty %}
-	<p>Be the first of your friends to comment on this post.</p>
+	<p id="first">Be the first of your friends to comment on this post.</p>
 
 {% endfor %}
 
 <h2 class="cursive write-comment">Write a Comment!</h2>
 <form action="{% url 'blogapp:comment' post.id %}" method="POST" class="form-horizontal" role="form">{% csrf_token %}
 	<div class="form-group">
+		<label class="control-label col-sm-2">Name:</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" name="person" id="person" placeholder="Name">
+			<input type="text" class="form-control" name="person" id="person">
 		</div>
 	</div>
-	<textarea row="10" class="form-control" name="comment" id="comment" placeholder="Comment..."></textarea>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Comment:</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" name="comment" id="comment"></textarea>
+		</div>
+	</div>
 	<button type="submit" class="btn btn-comment">Submit</button>
 	</div>
 </form>
