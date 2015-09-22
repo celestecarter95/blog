@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Search Blog Post By {{ category_list.0 }} {% endblock 'title' %}
+{% block 'content' %}
+
+<!--
+category_list.0.post_set.all grabs all of category_list.0's manyToMany posts
+category_list gets all categories, but we are just passing it the one we clicked on,
+.0 grabs the only one in the list,
+.post_set.all gets all manyToMany relationships that category has.
+ -->
+{% for post in category_list.0.post_set.all %}
+	<a href="{% url 'blogapp:detail' post.id %}">
+		<div class="preview">
+			<h3 class="title">{{ post.title }}</h3>
+			<p class="published">Published {{ post.pub_date|date:"M d, Y" }}</p>
+			<h4 class="poster">by <span class="cursive">{{ post.blog_poster}}</span></h4>
+			<p class="body">{{ post.body|slice:":100" }}...</p>
+			<div class="category">
+				{% for category in post.category.all %}
+					<p>{{ category }}</p>
+				{% endfor %}
+			</div>
+			<p class="keywords">{{ post.keywords.split|join:", " }}</p>
+		</div>
+	</a>
+{% empty %}
+	<p>No posts to show.</p>
+{% endfor %}
+
+{% endblock 'content' %}

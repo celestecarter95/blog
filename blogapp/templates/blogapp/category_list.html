@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Search Blog by Category {% endblock 'title' %}
+{% block 'content' %}
+
+{% for category in category_list %}
+	<a href="{% url 'blogapp:detailCategory' category.id %}">
+		<div class="category_list">
+			<p>{{ category.category_name }}</p>
+		</div>
+	</a>
+{% empty %}
+	<p>No categorys to search by.</p>
+{% endfor %}
+
+{% endblock 'content' %}

@@ -23,10 +23,16 @@ class DetailView(generic.DetailView):
 
 class CategoryView(generic.ListView):
 	model = Category
-	template_name = 'blogapp/category.html'
+	template_name = 'blogapp/category_list.html'
 
-class DetailCategoryView(generic.DetailView):
+class DetailCategoryView(generic.ListView):
 	model = Category
+	template_name = 'blogapp/category_detail.html'
+	
+	def get_queryset(self):
+		category_id = self.kwargs['pk']
+		print category_id 
+		return Category.objects.filter(id=category_id)
 
 def comment(request, post_id):
 	p = get_object_or_404(Post, pk=post_id)

@@ -35,6 +35,10 @@ body {
 	border-radius: 0;
 }
 
+.navbar-inverse .navbar-nav>li>a:hover {
+	color: rgba(241,154,117,1.0);
+}
+
 .navbar-inverse .navbar-nav>li>a {
 	color: rgba(241,239,199,1.0);
 }
@@ -193,6 +197,20 @@ textarea.form-control {
 
 .blogging .form-control {
 	margin-bottom: 15px;
+}
+
+.category_list {
+	background-color: rgba(241,154,117,1.0);
+	padding: 5px;
+	border-radius: 3px;
+	margin-bottom: 5px;
+	color: rgba(241,239,199,1.0);
+	font-size: 25px;
+	text-align: center;
+}
+
+.category_list p {
+	display: inline;
 }
 
 footer {
