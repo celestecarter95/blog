@@ -3,6 +3,19 @@
 {% block 'title' %} Search Blog by Category {% endblock 'title' %}
 {% block 'content' %}
 
+<div class="row">
+
+<form action="{% url 'blogapp:newCategory' %}" method="POST" class="col-lg-6 form form-category" role="form">{% csrf_token %}
+	<h1 class="cursive category-title">Want a New Category?</h1>
+	<h2 class="sub-title">Make a new one here!</h2>
+	<div class="form-group">
+		<label>Category Name:</label>
+			<input type="text" class="form-control" name="category_name" id="id_category">
+	</div>
+    <button type="submit" class="btn btn-category">Submit</button>
+</form>
+
+<div class="col-lg-6">
 {% for category in category_list %}
 	<a href="{% url 'blogapp:detailCategory' category.id %}">
 		<div class="category_list">
@@ -12,5 +25,7 @@
 {% empty %}
 	<p>No categorys to search by.</p>
 {% endfor %}
+</div>
 
+</div>
 {% endblock 'content' %}

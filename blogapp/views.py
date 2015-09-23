@@ -78,6 +78,16 @@ class PostImageView(generic.FormView):
 	def get_success_url(self):
 		return reverse('blogapp:detail', kwargs={'pk': self.id})
 
+def new_category(request):
+	try:
+		newCategory = Category(category_name = request.POST['category_name'])
+		newCategory.save()
+	except (KeyError, Category.DoesNotExist):
+		# Redisplay the question voting form.
+		return render(request, 'blogapp/category_list.html')
+	else:
+		return HttpResponseRedirect(reverse('blogapp:category'))
+
 #No model view form
 #def blogging(request):
 #	if request.method == 'POST':
